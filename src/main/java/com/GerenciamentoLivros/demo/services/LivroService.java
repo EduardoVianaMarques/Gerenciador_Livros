@@ -29,7 +29,12 @@ public class LivroService {
     public void  deleteById(Long id) {
         livroRepository.deleteById(id);
     }
+
     public LivrosModel update(Long id, LivrosModel livrosModel) {
+        LivrosModel newLivro = livroRepository.findById(id).get();
+        newLivro.setAutor(livrosModel.getAutor());
+        newLivro.setTitulo(livrosModel.getTitulo());
+        newLivro.setAnoPublicacao(livrosModel.getAnoPublicacao());
         return livroRepository.save(livrosModel);
     }
 

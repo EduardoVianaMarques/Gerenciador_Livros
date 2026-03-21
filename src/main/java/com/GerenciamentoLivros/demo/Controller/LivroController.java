@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/Livros")
@@ -28,10 +29,8 @@ public class LivroController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<LivrosModel> findById(@PathVariable Long id) {
-        return livroService.findById(id)
-                .map(livro -> ResponseEntity.ok().body(livro))
-                .orElse(ResponseEntity.notFound().build());
+    public Optional<LivrosModel> findById(@PathVariable Long id) {
+        return livroService.findById(id);
     }
 
 
